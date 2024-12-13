@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
 const { isEnabled } = require('~/server/utils/handleText');
 const transactionSchema = require('./schema/transaction');
-const { getMultiplier, getCacheMultiplier } = require('./tx');
+const { getMultiplier, getCacheMultiplier, getRequestPrice } = require('./tx');
 const { logger } = require('~/config');
 const Balance = require('./Balance');
 const cancelRate = 1.15;
 
 /** Method to calculate and set the tokenValue for a transaction */
 transactionSchema.methods.calculateTokenValue = function () {
+
+  const requestPrice = getRequestPrice(this.model, this.endpoint);
+  if (requestPrice !== undefined) {
+    this.tokenValue = -Math.abs(requestPrice);
+    this.rate = requestPrice;
+    return;
+  }
+
   if (!this.valueKey || !this.tokenType) {
     this.tokenValue = this.rawAmount;
   }
@@ -102,6 +110,14 @@ transactionSchema.statics.createStructured = async function (txData) {
 
 /** Method to calculate token value for structured tokens */
 transactionSchema.methods.calculateStructuredTokenValue = function () {
+  
+  const requestPrice = getRequestPrice(this.model, this.endpoint);
+  if (requestPrice !== undefined) {
+    this.tokenValue = -Math.abs(requestPrice);
+    this.rate = requestPrice;
+    return;
+  }
+
   if (!this.tokenType) {
     this.tokenValue = this.rawAmount;
     return;

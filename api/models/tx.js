@@ -1,6 +1,32 @@
 const { matchModelName } = require('../utils');
 const defaultRate = 6;
 
+/**
+ * Price per request for certain models.
+ * The prices are in USD per request.
+ * @type {Object.<string, number>}
+ */
+const requestPrices = {
+  'custom:o1-all': 50000,
+  'custom:o1-pro-all': 100000,
+  // Add more models and prices as needed
+};
+
+/**
+ * Retrieves the price per request for a given model.
+ *
+ * @param {string} model - The model name.
+ * @param {string} [endpoint] - The endpoint name.
+ * @returns {number|undefined} The price per request, or undefined if not found.
+ */
+const getRequestPrice = (model, endpoint) => {
+  const modelName = matchModelName(model, endpoint);
+  if (!modelName) {
+    return undefined;
+  }
+  return requestPrices[modelName];
+};
+
 /** AWS Bedrock pricing */
 const bedrockValues = {
   'llama2-13b': { prompt: 0.75, completion: 1.0 },
@@ -42,6 +68,13 @@ const bedrockValues = {
  */
 const tokenValues = Object.assign(
   {
+    /////////////////////////
+    'custom:gpt-4o-2024-11-20': { prompt: 0.5, completion: 2 },
+    'custom:o1-all': { prompt: 15, completion: 15 },
+    'custom:o1-pro-all': { prompt: 15, completion: 15 },
+    'claude-3-5-sonnet-latest': { prompt: 3, completion: 15 },
+    'claude-3-5-haiku-latest': { prompt: 0.8, completion: 4 },
+    /////////////////////////
     '8k': { prompt: 30, completion: 60 },
     '32k': { prompt: 60, completion: 120 },
     '4k': { prompt: 1.5, completion: 2 },
@@ -219,4 +252,5 @@ module.exports = {
   getCacheMultiplier,
   defaultRate,
   cacheTokenValues,
+  getRequestPrice,
 };

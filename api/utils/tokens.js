@@ -2,6 +2,10 @@ const z = require('zod');
 const { EModelEndpoint } = require('librechat-data-provider');
 
 const openAIModels = {
+  'custom:gpt-4o-2024-11-20': 127500,
+  'custom:o1-all': 127500,
+  'custom:o1-pro-all': 127500,
+
   o1: 127500, // -500 from max
   'o1-mini': 127500, // -500 from max
   'o1-preview': 127500, // -500 from max
@@ -106,6 +110,7 @@ const metaModels = {
 
 const ollamaModels = {
   'qwen2.5': 32000,
+  'QwQ-32B-Preview': 33000,
 };
 
 const ai21Models = {
@@ -151,7 +156,7 @@ const modelMaxOutputs = {
   o1: 32268, // -500 from max: 32,768
   'o1-mini': 65136, // -500 from max: 65,536
   'o1-preview': 32268, // -500 from max: 32,768
-  system_default: 1024,
+  system_default: 4096,
 };
 
 const anthropicMaxOutputs = {
@@ -265,6 +270,12 @@ function matchModelName(modelName, endpoint = EModelEndpoint.openAI) {
   const tokensMap = maxTokensMap[endpoint];
   if (!tokensMap) {
     return modelName;
+  }
+
+  // Try to match the model with endpoint prefix
+  const endpointModelName = `${endpoint}:${modelName}`;
+  if (tokensMap[endpointModelName]) {
+    return endpointModelName;
   }
 
   if (tokensMap[modelName]) {
