@@ -3,8 +3,8 @@ const { EModelEndpoint } = require('librechat-data-provider');
 
 const openAIModels = {
   'custom:gpt-4o-2024-11-20': 127500,
-  'custom:o1-all': 127500,
-  'custom:o1-pro-all': 127500,
+  'o1-all': 127500,
+  'o1-pro-all': 127500,
 
   o1: 127500, // -500 from max
   'o1-mini': 127500, // -500 from max
