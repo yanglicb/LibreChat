@@ -275,6 +275,7 @@ function matchModelName(modelName, endpoint = EModelEndpoint.openAI) {
   // Try to match the model with endpoint prefix
   // console.log('Endpoint:', endpoint);
   const endpointModelName = `${endpoint}:${modelName}`;
+  console.log('Endpoint Model Name:', endpointModelName);
   if (tokensMap[endpointModelName]) {
     return endpointModelName;
   }
