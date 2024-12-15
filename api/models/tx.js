@@ -142,6 +142,7 @@ const getValueKey = (model, endpoint) => {
 
   if (modelName.includes('gpt-3.5-turbo-16k')) {
     return '16k';
+  
   } else if (modelName.includes('gpt-3.5-turbo-0125')) {
     return 'gpt-3.5-turbo-0125';
   } else if (modelName.includes('gpt-3.5-turbo-1106')) {
@@ -195,20 +196,19 @@ const getMultiplier = ({ valueKey, tokenType, model, endpoint, endpointTokenConf
   if (endpointTokenConfig) {
     return endpointTokenConfig?.[model]?.[tokenType] ?? defaultRate;
   }
-
-  if (valueKey && tokenType) {
-    return tokenValues[valueKey][tokenType] ?? defaultRate;
-  }
-
   if (!tokenType || !model) {
     return 1;
   }
 
   valueKey = getValueKey(model, endpoint);
   if (!valueKey) {
+    console.error(`Could not find value key for model: ${model}`);
     return defaultRate;
   }
 
+  if (valueKey && tokenType) {
+    return tokenValues[valueKey][tokenType] ?? defaultRate;
+  }
   // If we got this far, and values[tokenType] is undefined somehow, return a rough average of default multipliers
   return tokenValues[valueKey]?.[tokenType] ?? defaultRate;
 };
