@@ -70,8 +70,8 @@ const tokenValues = Object.assign(
   {
     /////////////////////////
     'custom:gpt-4o-2024-11-20': { prompt: 0.5, completion: 2 },
-    'o1-all': { prompt: 15, completion: 15 },
-    'o1-pro-all': { prompt: 15, completion: 15 },
+    'o1-all': { prompt: 30, completion: 15 },
+    'o1-pro-all': { prompt: 30, completion: 15 },
     'claude-3-5-sonnet-latest': { prompt: 3, completion: 15 },
     'claude-3-5-sonnet-20241022': { prompt: 3*0.8, completion: 15*0.8 },
     'claude-3-5-haiku-latest': { prompt: 0.8, completion: 4 },
