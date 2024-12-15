@@ -2,7 +2,7 @@ const z = require('zod');
 const { EModelEndpoint } = require('librechat-data-provider');
 
 const openAIModels = {
-  'custom:gpt-4o-2024-11-20': 127500,
+  'openAI:gpt-4o-2024-11-20': 127500,
   'o1-all': 127500,
   'o1-pro-all': 127500,
 
@@ -273,7 +273,7 @@ function matchModelName(modelName, endpoint = EModelEndpoint.openAI) {
   }
 
   // Try to match the model with endpoint prefix
-  console.log('Endpoint:', endpoint);
+  // console.log('Endpoint:', endpoint);
   const endpointModelName = `${endpoint}:${modelName}`;
   if (tokensMap[endpointModelName]) {
     return endpointModelName;
