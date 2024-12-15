@@ -201,6 +201,7 @@ const getMultiplier = ({ valueKey, tokenType, model, endpoint, endpointTokenConf
   }
 
   valueKey = getValueKey(model, endpoint);
+  console.log('valueKey:', valueKey);
   if (!valueKey) {
     console.error(`Could not find value key for model: ${model}`);
     return defaultRate;
