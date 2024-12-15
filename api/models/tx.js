@@ -73,7 +73,7 @@ const tokenValues = Object.assign(
     'o1-all': { prompt: 30, completion: 15 },
     'o1-pro-all': { prompt: 30, completion: 15 },
     'claude-3-5-sonnet-latest': { prompt: 3, completion: 15 },
-    'claude-3-5-sonnet-20241022': { prompt: 3*0.8, completion: 15*0.8 },
+    'openAI:claude-3-5-sonnet-20241022': { prompt: 3*0.8, completion: 15*0.8 },
     'claude-3-5-haiku-latest': { prompt: 0.8, completion: 4 },
     'QwQ-32B-Preview': { prompt: 0.2, completion: 0.4 },
     /////////////////////////
