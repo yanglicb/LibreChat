@@ -9,7 +9,6 @@ const openAIModels = {
   'o1-all': 127500,
   'o1-pro-all': 127500,
 
-  o1: 195000, // -500 from max
   'o1-mini': 127500, // -500 from max
   'o1-preview': 127500, // -500 from max
   'gpt-4': 8187, // -5 from max
