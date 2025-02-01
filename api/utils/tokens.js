@@ -2,6 +2,8 @@ const z = require('zod');
 const { EModelEndpoint } = require('librechat-data-provider');
 
 const openAIModels = {
+  'o3-mini': 195000, // -5000 from max
+  o1: 195000, // -5000 from max
   'openAI:gpt-4o-2024-11-20': 127500,
   'openAI:claude-3-5-sonnet-20241022': 200000,
   'o1-all': 127500,
@@ -87,7 +89,8 @@ const anthropicModels = {
 };
 
 const deepseekModels = {
-  deepseek: 127500,
+  'deepseek-reasoner': 63000, // -1000 from max (API)
+  deepseek: 63000, // -1000 from max (API)
 };
 
 const metaModels = {
