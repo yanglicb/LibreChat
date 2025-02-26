@@ -70,6 +70,12 @@ const conversationPreset = {
   promptCache: {
     type: Boolean,
   },
+  thinking: {
+    type: Boolean,
+  },
+  thinkingBudget: {
+    type: Number,
+  },
   system: {
     type: String,
   },
@@ -116,6 +122,10 @@ const conversationPreset = {
   },
   max_tokens: {
     type: Number,
+  },
+  /** omni models only */
+  reasoning_effort: {
+    type: String,
   },
 };
 
@@ -165,12 +175,6 @@ const agentOptions = {
   frequency_penalty: {
     type: Number,
     required: false,
-  },
-  context: {
-    type: String,
-  },
-  systemMessage: {
-    type: String,
   },
 };
 
